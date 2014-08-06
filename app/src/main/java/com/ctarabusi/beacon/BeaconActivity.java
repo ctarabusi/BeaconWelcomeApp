@@ -78,7 +78,7 @@ public class BeaconActivity extends Activity implements BluetoothAdapter.LeScanC
         //Cancel any scans in progress
         mHandler.removeCallbacks(mStopRunnable);
         mHandler.removeCallbacks(mStartRunnable);
-        mBluetoothAdapter.cancelDiscovery();
+        mBluetoothAdapter.stopLeScan(this);
     }
 
     private Runnable mStopRunnable = new Runnable() {
