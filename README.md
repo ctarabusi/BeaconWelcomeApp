@@ -1,9 +1,9 @@
 BeaconWelcomeApp
 ================
 
-A playground to test some beacon interaction.
+A playground to test some beacon interactions and experiments.
 
-# BeaconActivity
+## BeaconActivity
 
 Simply scans for beacons and as soon as it finds one a toast message is displayed if the rssi is greater than -40db.
 
