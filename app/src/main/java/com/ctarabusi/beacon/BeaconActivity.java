@@ -21,8 +21,15 @@ public class BeaconActivity extends Activity implements BluetoothAdapter.LeScanC
 
     private BluetoothAdapter mBluetoothAdapter;
     private Vibrator vibrator;
-
     private long lastDisplayed = System.currentTimeMillis();
+
+    private Handler mHandler = new Handler() {
+
+        public void handleMessage(Message msg) {
+            Toast.makeText(getApplicationContext(), "Beacons 101 by Christian Tarabusi", Toast.LENGTH_LONG).show();
+            vibrator.vibrate(500);
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,19 +120,10 @@ public class BeaconActivity extends Activity implements BluetoothAdapter.LeScanC
         Log.i(TAG, "New LE Device: " + device.getName() + " @ " + rssi + " " + scanRecord.toString());
 
         long now = System.currentTimeMillis();
-        if (rssi > -40 && (now - lastDisplayed > 10000)) {
+        if (rssi > -100 && (now - lastDisplayed > 10000)) {
             mHandler.sendMessage(Message.obtain(null, 0, "Beacon found"));
             lastDisplayed = now;
         }
-
     }
-
-    private Handler mHandler = new Handler() {
-
-        public void handleMessage(Message msg) {
-            Toast.makeText(getApplicationContext(), "Welcome home!", Toast.LENGTH_LONG).show();
-            vibrator.vibrate(500);
-        }
-    };
 
 }
